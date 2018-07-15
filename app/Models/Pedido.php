@@ -14,7 +14,7 @@ class Pedido extends Model
     protected $fillable=[   /*  aqui especificamos los atributos*/
         'nombre',
         'descripcion',
-        'condicionl'
+        'condicion'
     ];
 
     protected $guarded =[

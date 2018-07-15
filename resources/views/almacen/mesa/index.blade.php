@@ -25,6 +25,7 @@
                         <a href="" data-target="#modal-delete-{{$mes->idmesa}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>                          
                     </td>
                 </tr>
+            @include('almacen.mesa.modal')   
             @endforeach
             </table>
         </div>

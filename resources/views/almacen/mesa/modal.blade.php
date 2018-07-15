@@ -1,6 +1,4 @@
-@extends('layouts.admin')
-@section('contenido')
-    <div    class="modal  fade modal-slide-in-right" aria-hidden="true" 
+<div    class="modal  fade modal-slide-in-right" aria-hidden="true" 
     role="dialog"   tabindex="-1" id="modal-delete-{{$mes->idmesa}}">
 
         {{Form::Open(array('action'=>array('MesaController@destroy',$mes->idmesa),'method'=>'delete'))}}
@@ -26,6 +24,4 @@
             </div>
         </div>
     {{Form::Close()}}
-    </div>
-   
-@endsection
+</div>

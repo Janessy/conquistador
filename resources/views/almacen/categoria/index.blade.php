@@ -27,7 +27,8 @@
                               <a href="" data-target="#modal-delete-{{$cat->idcategoria}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>  
                                                      
                         </td>              
-                  </tr>    
+                  </tr> 
+                  @include('almacen.categoria.modal')   
                   @endforeach
                   </table>
             </div>

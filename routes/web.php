@@ -18,6 +18,6 @@ Route::get('/', function () {
 Route::resource('almacen/categoria', 'CategoriaController'); 
 Route::resource('almacen/comida', 'ComidaController'); 
 Route::resource('almacen/mesa', 'MesaController'); 
-Route::get('/pedido', function () {
-    return view('pedido');
+Route::get('pedidos/orden', function () {
+    return view('pedidos.orden.index');
 });

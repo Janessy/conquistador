@@ -30,6 +30,7 @@
                         <a href="" data-target="#modal-delete-{{$com->idfoods}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>                          
                     </td>
                 </tr>
+                @include('almacen.comida.modal')   
             @endforeach
             </table>
         </div>

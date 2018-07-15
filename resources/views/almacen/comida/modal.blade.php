@@ -1,5 +1,3 @@
-@extends('layouts.admin')
-@section('contenido')
     <div    class="modal  fade modal-slide-in-right" aria-hidden="true" 
     role="dialog"   tabindex="-1" id="modal-delete-{{$com->idfoods}}">
 
@@ -27,5 +25,3 @@
         </div>
     {{Form::Close()}}
     </div>
-   
-@endsection
