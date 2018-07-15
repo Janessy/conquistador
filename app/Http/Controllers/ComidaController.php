@@ -19,17 +19,20 @@ class ComidaController extends Controller
     {
       if($request){
         $query=trim($request->get('searchText'));
-        $comida=DB::table('foods')
-            ->where('name','LIKE','%'.$query.'%')
-            ->orderBy('idfoods','asc')
-            ->paginate(7);
+        $comida=DB::table('foods as f')
+            ->join('categoria as c','f.idcategoria','=','c.idcategoria')
+            ->select('f.idfoods','f.name','f.precio','c.nombre as categoria')
+            ->where('f.name','LIKE','%'.$query.'%')
+            ->orderBy('f.idfoods','asc')
+            ->paginate(6);
        return view('almacen.comida.index',["comida" =>$comida,"searchText"=>$query]);
       }
     }
 
     public function create()
     {
-        return view("almacen.comida.create");
+        $categoria=DB::table('categoria')->where('condicion','=','1')->get();
+        return view("almacen.comida.create",["categoria"=>$categoria]);
     }
 
     public function store(ComidaFormRequest $request )
@@ -37,7 +40,7 @@ class ComidaController extends Controller
         $comida= new Comida;
         $comida->name=$request ->get('name');
         $comida->precio=$request ->get('precio');
-        $comida->idcategoria=$request ->get('idcategoria');
+        $comida->idcategoria=$request ->get('categoria');
         $comida->save();
        return Redirect::to('almacen/comida');
     }
@@ -50,7 +53,9 @@ class ComidaController extends Controller
 
     public function edit($id)
     {
-        return view("almacen.comida.edit",["comida" =>Comida::findOrFail($id)]);
+        $comida=Comida::findOrFail($id);
+        $categoria=DB::table('categoria')->where('condicion','=','1')->get();
+        return view("almacen.comida.edit",["comida" =>$comida,"categoria"=>$categoria]);
     }
 
     public function update(ComidaFormRequest $request,$id)

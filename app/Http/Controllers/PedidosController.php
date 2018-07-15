@@ -3,8 +3,12 @@
 namespace conquistador\Http\Controllers;
 
 use Illuminate\Http\Request;
+use conquistador\Http\Requests;
 use conquistador\Models\Pedido;
+use conquistador\Models\DetallePedido;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
+use conquistador\Http\Request\PedidoFormRequest;
 use DB;
 
 class PedidosController extends Controller

@@ -1,11 +1,10 @@
-
 @extends('layouts.admin')
 @section('contenido')
 <div  class="row">
-       <div class="col-lg-8  col-md-8 col-sm-8 col-xs-12">
-            <h3> Listado de Comidas  <a href="comida/create"> <button class="btn btn-success">Nuevo</button></a></h3>
-                    @include('almacen.comida.search')
-       </div>   
+    <div class="col-lg-8  col-md-8 col-sm-8 col-xs-12">
+        <h3> Listado de Comidas  <a href="comida/create"> <button class="btn btn-success">Nuevo</button></a></h3>
+            @include('almacen.comida.search')
+    </div>   
 </div> 
 
 <div  class="row">
@@ -16,7 +15,7 @@
                     <th>Id</th>
                     <th>Nombre</th>
                     <th>Precio</th>
-                    <th>IdCategoria</th>
+                    <th>Categoria</th>
                     <th>Opciones</th>
                 </thead>
             @foreach ($comida as $com)
@@ -24,7 +23,7 @@
                     <td>{{ $com->idfoods}}</td>
                     <td>{{ $com->name}}</td>
                     <td>{{ $com->precio}}</td>
-                    <td>{{ $com->idcategoria}}</td>
+                    <td>{{ $com->categoria}}</td>
                     <td>
                         <a href="{{URL::action('ComidaController@edit',$com->idfoods)}}"><button class="btn btn-info">Editar</button></a>
                         <a href="" data-target="#modal-delete-{{$com->idfoods}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>                          
