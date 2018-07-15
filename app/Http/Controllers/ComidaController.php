@@ -71,7 +71,7 @@ class ComidaController extends Controller
 
     public function destroy($id)
     {
-        $comida=Comida::finOrFail($id);
+        $comida=Comida::findOrFail($id);
         $comida->update();
       return Redirect::to('almacen/comida');
 

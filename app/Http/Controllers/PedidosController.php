@@ -3,19 +3,12 @@
 namespace conquistador\Http\Controllers;
 
 use Illuminate\Http\Request;
-use conquistador\Http\Requests; 
-use conquistador\Models\Pedido;
-use conquistador\Models\DetallePedido;
+use conquistador\Models\Comida;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Input;
-use conquistador\Http\Request\PedidoFormRequest;
+use conquistador\Http\Requests\ComidaFormRequest;
 use DB;
 
-use Carbon\Carbon;
-use Response;
-use Illuminate\Support\Collection;
-
-class PedidosController extends Controller
+class ComidaController extends Controller
 {
     public function __construct()
     {
@@ -26,57 +19,61 @@ class PedidosController extends Controller
     {
       if($request){
         $query=trim($request->get('searchText'));
-        $pedido=DB::table('pedido as p')
-            ->join('detalle_pedido dp','p.idpedido','=','dp.idpedido')
-            ->select('p.idpedido','p.idmesa','p.fecha','p.comprobante','p.num_comprobante','p.fecha_hora','p.total_venta','p.estado')
-            ->where('p.num_comprobante','LIKE','%'.$query.'%')
-            ->paginate(7);
-       return view('pedidos.orden.index',["categorias" =>$pedido,"searchText"=>$query]);
+        $comida=DB::table('foods as f')
+            ->join('categoria as c','f.idcategoria','=','c.idcategoria')
+            ->select('f.idfoods','f.name','f.precio','c.nombre as categoria')
+            ->where('f.name','LIKE','%'.$query.'%')
+            ->orderBy('f.idfoods','asc')
+            ->paginate(6);
+       return view('almacen.comida.index',["comida" =>$comida,"searchText"=>$query]);
       }
     }
 
     public function create()
     {
-        return view("almacen.categoria.create");
+        $categoria=DB::table('categoria')->where('condicion','=','1')->get();
+        return view("almacen.comida.create",["categoria"=>$categoria]);
     }
 
-    public function store(CategoriaFormRequest $request )
+    public function store(ComidaFormRequest $request )
     {
-       $categoria= new Categoria;
-       $categoria -> nombre=$request ->get('nombre');
-       $categoria -> descripcion=$request ->get('descripcion');
-       $categoria -> condicionl='1';
-       $categoria ->save();
-       return Redirect::to('almacen/categoria');
+        $comida= new Comida;
+        $comida->name=$request ->get('name');
+        $comida->precio=$request ->get('precio');
+        $comida->idcategoria=$request ->get('idcategoria');
+        $comida->save();
+       return Redirect::to('almacen/comida');
     }
 
     public function show($id)
     {
-        return view("almacen.categoria.show",["categoria" =>Categoria::findOrFail($id)]);
+        return view("almacen.comida.show",["comida" =>Comida::findOrFail($id)]);
 
     }
 
     public function edit($id)
     {
-        return view("almacen.categoria.edit",["categoria" =>Categoria::findOrFail($id)]);
+        $comida=Comida::findOrFail($id);
+        $categoria=DB::table('categoria')->where('condicion','=','1')->get();
+        return view("almacen.comida.edit",["comida" =>$comida,"categoria"=>$categoria]);
     }
 
-    public function update(CategoriaFormRequest $request,$id)
+    public function update(ComidaFormRequest $request,$id)
     {
-        $categoria=Categoria::findOrFail($id);
-        $categoria->nombre=$request -> get('nombre');
-        $categoria->descripcion=$request -> get('descripcion');
-        $categoria-> update();
-        return Redirect::to('almacen/categoria');
+        $comida=Comida::findOrFail($id);
+        $comida->name=$request -> get('name');
+        $comida->precio=$request -> get('precio');
+        $comida->idcategoria=$request ->get('idcategoria');
+        $comida-> update();
+        return Redirect::to('almacen/comida');
 
     }
 
     public function destroy($id)
     {
-      $categoria=Categoria::finOrFail($id);
-      $categoria->condicion='0';
-      $categoria->update();
-      return Redirect::to('almacen/categoria');
+        $comida=Comida::finOrFail($id);
+        $comida->update();
+      return Redirect::to('almacen/comida');
 
     }
 }

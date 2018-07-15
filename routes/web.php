@@ -14,11 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/pedido', function () {
+    return view('pedido');
+});
 Route::resource('almacen/categoria', 'CategoriaController'); 
 Route::resource('almacen/comida', 'ComidaController'); 
 Route::resource('almacen/mesa', 'MesaController'); 
 Route::resource('pedido/orden', 'DetallePedidoController');
+Route::resource('pedido', 'PedidosController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

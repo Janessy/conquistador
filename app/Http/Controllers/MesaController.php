@@ -61,7 +61,7 @@ class MesaController extends Controller
 
     public function destroy($id)
     {
-      $mesa=Mesa::finOrFail($id);
+      $mesa=Mesa::findOrFail($id);
       $mesa->condicion='0';
       $mesa->update();
       return Redirect::to('almacen/mesa');
