@@ -26,9 +26,12 @@
                 class="form-control" value="{{$comida->precio}}" placeholder="Precio...">
             </div>   
             <div class="form-group">
-                <label for="idcategoria">IdCategoria</label>
-                <input type="text"  name="idcategoria"
-                class="form-control" value="{{$comida->idcategoria}}" placeholder="Categoria...">
+                <label for="idcategoria">Categoria</label>
+                <select name="idcategoria" class="form-control">
+                    @foreach($categoria as $cat)
+                        <option value="{{$cat->idcategoria}}">{{$cat->idcategoria}}</option>
+                    @endforeach
+                </select>
             </div>   
             <div class="form-group">
                     <button class="btn btn-primary"  type="submit">Guardar </button>

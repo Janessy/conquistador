@@ -18,9 +18,7 @@ Route::get('/', function () {
 Route::resource('almacen/categoria', 'CategoriaController'); 
 Route::resource('almacen/comida', 'ComidaController'); 
 Route::resource('almacen/mesa', 'MesaController'); 
-Route::get('pedidos/orden', function () {
-    return view('pedidos.orden.index');
-});
+Route::resource('pedido/orden', 'DetallePedidoController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

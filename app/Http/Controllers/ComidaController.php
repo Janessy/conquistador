@@ -40,7 +40,7 @@ class ComidaController extends Controller
         $comida= new Comida;
         $comida->name=$request ->get('name');
         $comida->precio=$request ->get('precio');
-        $comida->idcategoria=$request ->get('categoria');
+        $comida->idcategoria=$request ->get('idcategoria');
         $comida->save();
        return Redirect::to('almacen/comida');
     }
