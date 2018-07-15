@@ -22,7 +22,7 @@
                     <td>{{ $mes->mesa}}</td>
                     <td>
                         <a href="{{URL::action('MesaController@edit',$mes->idmesa)}}"><button class="btn btn-info">Editar</button></a>
-                        <a href=""><button class="btn btn-danger">Eliminar</button></a>                          
+                        <a href="" data-target="#modal-delete-{{$mes->idmesa}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>                          
                     </td>
                 </tr>
             @endforeach
