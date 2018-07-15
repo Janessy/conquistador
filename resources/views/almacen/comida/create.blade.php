@@ -12,9 +12,7 @@
                     </ul>
                 </div>
             @endif
-
         {!!Form::open(array('url'=>'almacen/comida', 'method'=>'POST','autocomplete'=>'off'))!!}
-
         {{Form::token()}}
             <div class="form-group">
                 <label for="name">Nombre</label>
@@ -27,9 +25,12 @@
                 class="form-control" placeholder="Precio...">
             </div>   
             <div class="form-group">
-                <label for="idcategoria">IdCategoria</label>
-                <input type="text"  name="idcategoria"
-                class="form-control" placeholder="Categoria...">
+                <label for="idcategoria">Categoria</label>
+                <select name="idcategoria" class="form-control">
+                    @foreach($categoria as $cat)
+                        <option value="{{$cat->idcategoria}}">{{$cat->nombre}}</option>
+                    @endforeach
+                </select>
             </div>   
             <div class="form-group">
                     <button class="btn btn-primary"  type="submit">Guardar </button>

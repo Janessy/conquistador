@@ -2,8 +2,8 @@
 
 namespace conquistador\Providers;
 
-use Illuminate\Support\ServicePruse; 
-use Illuminate\Support\ServiceProvider\Facades\Schema;
+use Illuminate\Support\ServiceProvider; 
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        schema::defaultStringLength(191);
+        Schema::defaultStringLength(191);
     }
 
     /**

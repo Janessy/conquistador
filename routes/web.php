@@ -21,3 +21,6 @@ Route::resource('almacen/mesa', 'MesaController');
 Route::get('pedidos/orden', function () {
     return view('pedidos.orden.index');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
