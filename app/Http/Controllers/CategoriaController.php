@@ -21,7 +21,7 @@ class CategoriaController extends Controller
         $query=trim($request->get('searchText'));
         $categorias=DB::table('categoria')
             ->where('nombre','LIKE','%'.$query.'%')
-            ->where('condicionl','=','1')
+            ->where('condicion','=','1')
             ->orderBy('idcategoria','asc')
             ->paginate(7);
        return view('almacen.categoria.index',["categorias" =>$categorias,"searchText"=>$query]);
@@ -36,9 +36,9 @@ class CategoriaController extends Controller
     public function store(CategoriaFormRequest $request )
     {
        $categoria= new Categoria;
-       $categoria -> nombre=$request ->get('nombre');
-       $categoria -> descripcion=$request ->get('descripcion');
-       $categoria -> condicionl='1';
+       $categoria ->nombre=$request ->get('nombre');
+       $categoria ->descripcion=$request ->get('descripcion');
+       $categoria ->condicion='1';
        $categoria ->save();
        return Redirect::to('almacen/categoria');
     }
@@ -56,10 +56,10 @@ class CategoriaController extends Controller
 
     public function update(CategoriaFormRequest $request,$id)
     {
-        $categoria=Categoria::findOrFail($id);
+        $categoria = Categoria::findOrFail($id);
         $categoria->nombre=$request -> get('nombre');
         $categoria->descripcion=$request -> get('descripcion');
-        $categoria-> update();
+        $categoria->update();
         return Redirect::to('almacen/categoria');
 
     }

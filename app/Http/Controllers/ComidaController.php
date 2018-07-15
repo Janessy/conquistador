@@ -56,8 +56,9 @@ class ComidaController extends Controller
     public function update(ComidaFormRequest $request,$id)
     {
         $comida=Comida::findOrFail($id);
-        $comida->nombre=$request -> get('nombre');
+        $comida->name=$request -> get('name');
         $comida->precio=$request -> get('precio');
+        $comida->idcategoria=$request ->get('idcategoria');
         $comida-> update();
         return Redirect::to('almacen/comida');
 

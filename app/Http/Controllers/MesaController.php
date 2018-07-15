@@ -34,20 +34,20 @@ class MesaController extends Controller
     public function store(MesaFormRequest $request )
     {
        $mesa= new Mesa;
-       $mesa -> mesa=$request ->get('mesa');
+       $mesa->mesa=$request ->get('mesa');
        $mesa->save();
        return Redirect::to('almacen/mesa');
     }
 
     public function show($id)
     {
-        return view("almacen.mesa.show",["categoria" =>Mesa::findOrFail($id)]);
+        return view("almacen.mesa.show",["mesa" =>Mesa::findOrFail($id)]);
 
     }
 
     public function edit($id)
     {
-        return view("almacen.mesa.edit",["categoria" =>Mesa::findOrFail($id)]);
+        return view("almacen.mesa.edit",["mesa" =>Mesa::findOrFail($id)]);
     }
 
     public function update(MesaFormRequest $request,$id)
@@ -64,7 +64,7 @@ class MesaController extends Controller
       $mesa=Mesa::finOrFail($id);
       $mesa->condicion='0';
       $mesa->update();
-      return Redirect::to('almacen/categoria');
+      return Redirect::to('almacen/mesa');
 
     }
 }

@@ -26,7 +26,7 @@
                     <td>{{ $com->precio}}</td>
                     <td>{{ $com->idcategoria}}</td>
                     <td>
-                        <a href=""><button class="btn btn-info">Editar</button></a>
+                        <a href="{{URL::action('ComidaController@edit',$com->idfoods)}}"><button class="btn btn-info">Editar</button></a>
                         <a href=""><button class="btn btn-danger">Eliminar</button></a>                          
                     </td>
                 </tr>

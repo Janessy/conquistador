@@ -17,13 +17,13 @@
                         <th>Descripción</th>
                         <th>Opciones</th>
                      </thead>
-@foreach ($categorias as $cat)
+                  @foreach ($categorias as $cat)
                      <tr>
                           <td>{{ $cat->idcategoria}}</td>
                           <td>{{ $cat->nombre}}</td>
                           <td>{{ $cat->descripcion}}</td>
                           <td>
-                            <a href=""><button class="btn btn-info">Editar</button></a>
+                            <a href="{{URL::action('CategoriaController@edit',$cat->idcategoria)}}"><button class="btn btn-info">Editar</button></a>
                             <a href=""><button class="btn btn-danger">Eliminar</button></a>                          
                           </td>
                                           

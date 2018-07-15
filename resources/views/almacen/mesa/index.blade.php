@@ -1,4 +1,3 @@
-
 @extends('layouts.admin')
 @section('contenido')
 <div  class="row">
@@ -22,7 +21,7 @@
                     <td>{{ $mes->idmesa}}</td>
                     <td>{{ $mes->mesa}}</td>
                     <td>
-                        <a href=""><button class="btn btn-info">Editar</button></a>
+                        <a href="{{URL::action('MesaController@edit',$mes->idmesa)}}"><button class="btn btn-info">Editar</button></a>
                         <a href=""><button class="btn btn-danger">Eliminar</button></a>                          
                     </td>
                 </tr>
