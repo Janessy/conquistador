@@ -13,18 +13,18 @@
             <table  class="table table-striped table-bordered table-condensed table-hover">
                 <thead>
                     <th>Id</th>
-                    <th>IdPedido</th>
+                    <th>Mesa</th>
+                    <th>Fecha</th>
+                    <th>Precio</th>
                     <th>Comida</th>
-                    <th>Cantidad</th>
-                    <th>Total</th>
                 </thead>
             @foreach ($pedido as $ped)
                 <tr>
-                    <td>{{ $ped->iddetalle_pedido}}</td>
                     <td>{{ $ped->idpedido}}</td>
-                    <td>{{ $ped->idfoods}}</td>
-                    <td>{{ $ped->cantidad}}</td>
-                    <td>{{ $ped->precio_pedido}}</td>
+                    <td>{{ $ped->idmesa}}</td>
+                    <td>{{ $ped->fecha}}</td>
+                    <td>{{ $ped->precio}}</td>
+                    <td>{{ $ped->comida}}</td>
                 </tr>  
             @endforeach
             </table>

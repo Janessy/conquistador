@@ -12,9 +12,11 @@ class Pedido extends Model
     agregen esas columnas de creacion y actualizacion del registro  */
 
     protected $fillable=[   /*  aqui especificamos los atributos*/
-        'nombre',
-        'descripcion',
-        'condicion'
+        'idmesa',
+        'fecha',
+        'idfoods',
+        'total_venta'
+        
     ];
 
     protected $guarded =[
