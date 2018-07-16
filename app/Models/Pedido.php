@@ -14,8 +14,9 @@ class Pedido extends Model
     protected $fillable=[   /*  aqui especificamos los atributos*/
         'idmesa',
         'fecha',
-        'idfoods',
-        'total_venta'
+        'precio',
+        'idfoods'
+        
         
     ];
 

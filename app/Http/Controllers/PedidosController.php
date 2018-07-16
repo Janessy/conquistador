@@ -7,6 +7,9 @@ use conquistador\Models\Pedido;
 use Illuminate\Support\Facades\Redirect;
 use conquistador\Http\Requests\PedidoFormRequest;
 use DB;
+use Carbon\Carbon;
+use Response;
+use Illuminate\Support\Collection;
 
 class PedidosController extends Controller
 {
@@ -32,18 +35,19 @@ class PedidosController extends Controller
     public function create()
     {
         $categoria=DB::table('categoria')->where('condicion','=','1')->get();
-        $comida=DB::table('foods');
-        $mesa=DB::table('mesa');
+        $comida=DB::table('foods')->get();
+        $mesa=DB::table('mesa')->get();
         return view("pedido.orden.create",["categoria"=>$categoria,"comida"=>$comida,"mesa"=>$mesa]);
     }
 
-    public function store(ComidaFormRequest $request )
+    public function store(PedidoFormRequest $request )
     {
         $pedido= new Pedido;
         $pedido->idmesa=$request ->get('idmesa');
-        $pedido->fecha=$request ->get('fecha');
+        $mytime = Carbon::now('America/Lima');
+        $pedido->fecha=$mytime->toDateTimeString();
         $pedido->precio=$request ->get('precio');
-        $pedido->comida=$request ->get('comida');
+        $pedido->idfoods=$request ->get('idfoods');
         
         $pedido->save();
        return Redirect::to('pedido/orden');
